@@ -52,7 +52,7 @@ def restore_etc_hosts(port):
 
 # Isolate function that needs to be replaced for tests
 def setup_daemon():
-    if os.getuid() != 0:
+    if os.getuid() != 0 and os.geteuid() != 0:
         raise Fatal('you must be root (or enable su/sudo) to set the firewall')
 
     # don't disappear if our controlling terminal or stdout/stderr

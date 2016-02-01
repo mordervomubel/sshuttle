@@ -193,7 +193,7 @@ class FirewallClient:
             # run in the child process
             s2.close()
         e = None
-        if os.getuid() == 0:
+        if os.getuid() == 0 or os.geteuid() == 0:
             argv_tries = argv_tries[-1:]  # last entry only
         for argv in argv_tries:
             try:
